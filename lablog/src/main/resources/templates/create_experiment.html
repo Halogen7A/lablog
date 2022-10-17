@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Initialize Experiment</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <form th:action="@{/experiment/initialized}" th:object = "${experiment}" method="post">
+            <div class="form-element">
+                <label for="startDate">Start Date:</label>
+                <input
+                type="date"
+                name="startDate"
+                th:field = "*{startDate}"
+                placeholder="Enter Start Date"
+                >
+            </div>
+
+            <div class="form-element">
+                <button type="submit">Initialize</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

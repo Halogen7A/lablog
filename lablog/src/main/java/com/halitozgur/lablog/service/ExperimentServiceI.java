@@ -2,14 +2,18 @@ package com.halitozgur.lablog.service;
 
 import java.util.List;
 
+import com.halitozgur.lablog.model.EquipmentOrder;
 import com.halitozgur.lablog.model.Experiment;
 
 
 public interface ExperimentServiceI {
 
 	public List<Experiment> getAllExperiments();
+	public Experiment findExperimentById(Long id);
 	public Experiment initializeExperiment(Experiment experiment);
-	public void endExperiment(Long id, Experiment experiment);
+	public Experiment endExperiment(Long id, Experiment experiment);
 	public Experiment addStudent(Long studentId, Long experimentId);
+	public EquipmentOrder addEquipment(Long studentId, Long experimentId, int quantity);
+	public Experiment addSupervisor(Long supervisorId, Long experimentId);
 	public void deleteExperiment(Long id);
 }

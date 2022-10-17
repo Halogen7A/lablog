@@ -1,0 +1,149 @@
+@charset "ISO-8859-1";
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --main-color-1: black;
+    --main-color-2: white;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: smaller;
+    background-color: var(--main-color-2);
+    color: var(--main-color-1);
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.experiment-container, .task-container, .equipment-container, .home-container {
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.home-container > ol > li {
+    margin-bottom: 5px;
+}
+
+.search-bar {
+    margin-bottom: 2rem;
+}
+
+.navbar {
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgreen;
+    position: fixed;
+    top: 0%;
+    width: 100%;
+    z-index: 2;
+}
+
+.navbar-links {
+    display: flex;
+}
+
+.navbar-links li {
+    list-style: none;
+    margin: 1rem;
+}
+
+.navbar-links li a {
+    color: var(--main-color-1);
+}
+
+.navbar-links li::after {
+    display: block;
+    content: '';
+    border-bottom: solid 3px var(--main-color-1);
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+}
+
+.navbar-links li:hover:after {
+    transform: scaleX(.5);
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: var(--main-color-1);
+}
+
+h1, .add{
+    text-align: center;
+}
+
+.add {
+    margin-top: 1rem;
+}
+
+.add a{
+    border: 2px solid var(--main-color-1);
+    border-radius: 5px;
+    width: fit-content;
+    padding: 5px;
+}
+
+.add a:hover {
+    color: var(--main-color-2);
+    background-color: var(--main-color-1);
+}
+
+.experiment-table, .task-table, .equipment-table {
+    margin-right:auto;
+    margin-left:auto;
+}
+
+.table, th, td {
+    border: 2px solid var(--main-color-1);
+    border-collapse: collapse;
+    padding: 1rem;
+}
+
+.edit, .delete {
+    font-size: larger;
+}
+
+.edit:hover {
+    color: rgb(219, 219, 3);
+}
+
+.delete:hover {
+    color: red;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: black;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.form-element {
+    color: white;
+    margin-top: 2rem;
+    text-align: center;
+}

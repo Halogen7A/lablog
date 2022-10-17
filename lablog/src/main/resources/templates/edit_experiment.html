@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>End Experiment</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <form th:action="@{/experiment/ended/{id}(id=${experiment.experimentId})}" th:object = "${experiment}" method="post">
+            <div class="form-element">
+                <label for="endDate">End Date:</label>
+                <input
+                type="date"
+                name="endDate"
+                th:field = "*{endDate}"
+                placeholder="Enter End Date"
+                >
+            </div>
+
+            <div class="form-element">
+                <label for="damageCost">Damage Cost:</label>
+                <input
+                type= "text"
+                name="damageCost"
+                th:field = "*{damageCost}"
+                placeholder="Enter Damage Cost"
+                >
+            </div>
+
+            <div class="form-element">
+                <button type="submit">End</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Equipment</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <form th:action="@{/equipment/updated/{id}(id=${equipment.equipmentId})}" th:object = "${equipment}" method="post">
+    
+            <div class="form-element">
+                <label for="equipName">Name</label>
+                <input
+                type="text"
+                name="equipName"
+                th:field = "*{equipName}"
+                placeholder="Enter Equipment Name"
+                >
+            </div>
+
+            <div class="form-element">
+                <label for="availableQuantity">Quantity</label>
+                <input
+                type= "number"
+                name="availableQuantity"
+                th:field = "*{availableQuantity}"
+                placeholder="Enter Equipment Quantity"
+                >
+            </div>
+
+            <div class="form-element">
+                <label for="unitPrice">Unit Price</label>
+                <input
+                type="text"
+                name="unitPrice"
+                th:field = "*{unitPrice}"  
+                placeholder="Enter Equipment Price"
+                >
+            </div>
+
+            <div class="form-element">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

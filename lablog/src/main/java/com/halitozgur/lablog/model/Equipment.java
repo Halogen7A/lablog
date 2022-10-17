@@ -1,6 +1,6 @@
 package com.halitozgur.lablog.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,14 +18,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Entity
 @Table(name="equipment")
 @FieldDefaults(level=AccessLevel.PRIVATE)
-@Data
 @NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode(exclude="orders")
 public class Equipment {
 
 	@Id
@@ -45,11 +50,9 @@ public class Equipment {
 	@DecimalMin("0.0")
 	double unitPrice;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "equipment")
-	List<EquipmentExperiment> quantityUsed;
 
-	
+	@OneToMany(mappedBy="equipment")
+	Set<EquipmentOrder> orders;
 	
 	
 }

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Experiment</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+	<script type="text/javascript" th:src="@{/js/actions.js}"></script>
+	<div class="navbar">
+		<ul class="navbar-links">
+			<li><a th:href="@{/home}">Home</a></li>
+			<li><a th:href="@{/experiment}">Experiments</a></li>
+			<li><a th:href="@{/equipment}">Inventory</a></li>
+			<li><a th:href="@{/task}">Tasks</a></li>
+			<li><a onclick="setTheme('Dark')"><i class="fa-solid fa-moon"></i></a></li>
+			<li><a onclick="setTheme('Light')"><i class="fa-solid fa-sun"></i></a></li>
+		</ul>
+	</div>
+	<div class="experiment-container">
+		<h1>Experiments</h1>
+		
+		<table class="experiment-table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Damage Cost</th>
+					<th>Students</th>
+                    <th>Equipments</th>
+                    <th>Supervisor</th>
+					<th>Add Student</th>
+					<th>Add Equipment</th>
+					<th>Set Supervisor</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each = "experiment: ${experiment}">
+					<td th:text = "${experiment.experimentId}"></td>
+					<td th:text = "${experiment.startDate}"></td>
+					<td th:text = "${experiment.endDate} ?: 'UNKNOWN'"></td>
+					<td th:text = "'$' + ${experiment.damageCost}"></td>
+                    <td>
+						<ul th:each = "student: ${experiment.getStudents()} ?: 'EMPTY'">
+                        	<li th:text = "${student.studentName}"></li>
+						</ul>
+                    </td>
+                    <td>
+						<ul th:each = "order: ${experiment.getOrders()}">
+							<li th:text = "${order.quantityUsed} + ' ' + ${order.equipment.getEquipName()}"></li>
+						</ul>
+                    </td>
+                    <td>
+						<div th:each = "supervisor: ${experiment.getSupervisor()}">
+							<span th:text = "${supervisor.supervisorName}"></span>
+							<p th:if = "${supervisor.supervisorName == null}">EMPTY</p>
+						</div>
+                    </td>
+					<td>
+						<form th:if="${experiment.endDate == null}" th:action="@{'/experiment/' + ${experiment.experimentId} + '/addStudent/'}" method="post">
+							<input
+							type="text"
+							name="studentName"
+							th:value= "*{studentName}"
+							placeholder="Enter Name"
+							>
+							<br>
+							<button type="submit">Add</button>
+						</form>
+					</td>
+					<td>
+						<form th:if="${experiment.endDate == null}"  th:action="@{'/experiment/' + ${experiment.experimentId} + '/addEquipment/'}" method="post">
+								<input
+								type="text"
+								name="equipmentId"
+								th:value= "*{equipmentId}"
+								placeholder="Enter Equipment Id"
+								>
+								<br>
+								<input
+								type="text"
+								name="quantityUsed"
+								th:value= "*{quantityUsed}"
+								placeholder="Enter Quantity Used"
+								>
+								<br>
+								<button type="submit">Add</button>
+						</form>
+					</td>
+					<td>
+						<form th:if="${experiment.endDate == null && experiment.getSupervisor() == null}" th:action="@{'/experiment/' + ${experiment.experimentId} + '/addSupervisor/'}" method="post">
+								<input
+								type="text"
+								name="supervisorName"
+								th:value= "*{supervisorName}"
+								placeholder="Enter Supervisor Name"
+								>
+								<br>
+								<button type="submit">Set</button>
+						</form>
+					</td>
+					<td>
+						<a class="edit" th:if="${experiment.endDate == null}" th:href = "@{/experiment/edit/{experimentId}(experimentId=${experiment.experimentId})}">End <i class="fa fa-edit"></i></a><br>
+						<a class="delete" th:href = "@{/experiment/delete/{experimentId}(experimentId=${experiment.experimentId})}">Delete <i class="fa fa-remove"></i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="add"><a th:href = "@{/experiment/initialize}">Initialize Experiment</a></div>
+		
+	</div>
+</body>
+</html>

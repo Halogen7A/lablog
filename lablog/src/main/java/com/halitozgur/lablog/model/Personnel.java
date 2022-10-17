@@ -36,8 +36,9 @@ public class Personnel {
 	@Size(min=8, message="password should have at least 8 characters")
 	String personnelPassword;
 	
+	@Column(name = "personnel_role", nullable=false)
+	String role;
 	
-	@OneToOne
-	AssignedEmail personnelEmail;
+	
 	
 }

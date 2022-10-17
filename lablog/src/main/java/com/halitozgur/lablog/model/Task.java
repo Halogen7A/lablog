@@ -1,7 +1,6 @@
 package com.halitozgur.lablog.model;
 
 
-import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,11 +23,15 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level=AccessLevel.PRIVATE)
 @Data
 @NoArgsConstructor
+
 public class Task {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long taskId;
+	
+	@Column(name="task_type", nullable=false)
+	Type taskType;
 	
 	@Column(name="description")
 	@NotEmpty
@@ -36,7 +39,7 @@ public class Task {
 	String description;
 	
 	@Column(name="due_date", nullable=true)
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
-	LocalDate dueDate;
+	@JsonFormat(shape=JsonFormat.Shape.STRING)
+	String dueDate;
 
 }

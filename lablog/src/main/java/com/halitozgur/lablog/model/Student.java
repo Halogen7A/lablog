@@ -1,6 +1,5 @@
 package com.halitozgur.lablog.model;
 
-import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,7 +14,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -27,6 +28,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level=AccessLevel.PRIVATE)
 @Data
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Student {
 
 	@Id
@@ -47,7 +49,7 @@ public class Student {
 	
 	@Column(name = "birth_date", nullable=false)
 	@NotEmpty
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+	@JsonFormat(shape=JsonFormat.Shape.STRING)
 	String birthDate;
 	
 	@JsonIgnore

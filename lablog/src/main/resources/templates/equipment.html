@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Equipment</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+	<script type="text/javascript" th:src="@{/js/actions.js}"></script>
+	<div class="navbar">
+		<ul class="navbar-links">
+			<li><a th:href="@{/home}">Home</a></li>
+			<li><a th:href="@{/experiment}">Experiments</a></li>
+			<li><a th:href="@{/equipment}">Inventory</a></li>
+			<li><a th:href="@{/task}">Tasks</a></li>
+			<li><a onclick="setTheme('Dark')"><i class="fa-solid fa-moon"></i></a></li>
+			<li><a onclick="setTheme('Light')"><i class="fa-solid fa-sun"></i></a></li>
+		</ul>
+	</div>
+	<div class="equipment-container">
+		<h1>Equipments</h1>
+		
+		<div class="search-bar">
+			<form th:action="@{/equipment/search}" method="get">
+                <input
+                type="text"
+                name="equipName"
+                th:value= "*{equipName}"
+                placeholder="Enter Equipment Name"
+                >
+				<button type="submit">Search</button>
+			</form>
+		</div>
+		
+		<table class="equipment-table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Available Quantity</th>
+					<th>Unit Price</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each = "equipment: ${equipment}">
+					<td th:text = "${equipment.equipmentId}"></td>
+					<td th:text = "${equipment.equipName}"></td>
+					<td th:text = "${equipment.availableQuantity}"></td>
+					<td th:text = "${equipment.unitPrice}"></td>
+					<td>
+						<a class="edit" th:href = "@{/equipment/edit/{id}(id=${equipment.equipmentId})}">Edit <i class="fa fa-edit"></i></a>
+						<a class="delete" th:href = "@{/equipment/delete/{id}(id=${equipment.equipmentId})}">Delete <i class="fa fa-remove"></i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="add"><a th:href = "@{/equipment/new}">Add Equipment</a></div>
+	</div>
+</body>
+</html>

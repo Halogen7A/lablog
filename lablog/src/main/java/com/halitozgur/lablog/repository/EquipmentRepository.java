@@ -5,7 +5,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.halitozgur.lablog.model.Equipment;
 
-@RepositoryRestResource(collectionResourceRel = "equipment", path = "equipment")
-public interface EquipmentRepository extends JpaRepository<Equipment, Long>{
 
+public interface EquipmentRepository extends JpaRepository<Equipment, Long>{
+	
+	public Equipment findByEquipName(String equipName);
 }

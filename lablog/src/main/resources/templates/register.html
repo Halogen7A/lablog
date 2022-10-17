@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Register</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <form th:action="@{/register/addPersonnel}" th:object = "${personnel}" method="post">
+            <div class="form-element">
+                <label for="personnelUserName">Username (must be at least 8 characters):</label><br>
+                <input
+                type= "text"
+                name="personnelUserName"
+                th:field = "*{personnelUserName}"
+                placeholder="Enter Username"
+                >
+            </div>
+            <div class="form-element">
+                <label for="personnelPassword">Set Password (must be at least 8 characters):</label><br>
+                <input
+                type= "password"
+                name="personnelPassword"
+                th:field = "*{personnelPassword}"
+                placeholder="Enter Username"
+                >
+            </div>
+            <div class="form-element">
+                <label for="role">Role</label>
+                <select name="role" id="role" th:field = "*{role}">
+                    <option value="PERSONNEL">PERSONNEL</option>
+                    <option value="ADMIN">ADMIN</option>
+                </select>
+            </div>
+            <div class="form-element">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

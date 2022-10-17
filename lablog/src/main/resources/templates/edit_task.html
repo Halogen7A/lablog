@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Task</title>
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <form th:action="@{/task/updated/{id}(id=${task.taskId})}" th:object = "${task}" method="post">
+    
+            <div class="form-element">
+                <label for="taskType">Type</label>
+                <select name="taskType" id="taskType" th:field = "*{taskType}">
+                    <option value="DELIVERY">DELIVERY</option>
+                    <option value="PLACEMENT">PLACEMENT</option>
+                    <option value="CLEAN">CLEAN</option>
+                    <option value="CHARGE">CHARGE</option>
+                </select>
+            </div>
+
+            <div class="form-element">
+                <label for="description">Description</label>
+                <input
+                type= "text"
+                name="description"
+                th:field = "*{description}"
+                placeholder="Enter Description"
+                >
+            </div>
+
+            <div class="form-element">
+                <label for="dueDate">Due Date</label>
+                <input
+                type="date"
+                name="dueDate"
+                th:field = "*{dueDate}"  
+                placeholder="Enter Due Date"
+                >
+            </div>
+
+            <div class="form-element">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

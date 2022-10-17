@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.halitozgur.lablog.model.Student;
+import com.halitozgur.lablog.repository.StudentRepository;
 import com.halitozgur.lablog.service.StudentService;
 
 @RestController
@@ -21,6 +22,9 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
+	@Autowired
+	private StudentRepository studentRepo;
+	
 	@GetMapping("/getAllStudents")
 	public List<Student> getAllStudents() {
 		return studentService.getAllStudents();
@@ -29,6 +33,11 @@ public class StudentController {
 	@GetMapping("/getStudentById/{id}")
 	public Optional<Student> getStudentById(@PathVariable Long id) {
 		return studentService.getStudentById(id);
+	}
+	
+	@GetMapping("/getStudentByName/{studentName}")
+	public Student getStudentByName(@PathVariable String studentName) {
+		return studentRepo.findByStudentName(studentName);
 	}
 
 	@PostMapping("/add")
