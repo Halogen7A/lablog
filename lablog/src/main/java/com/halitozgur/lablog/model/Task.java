@@ -1,6 +1,10 @@
 package com.halitozgur.lablog.model;
 
-
+/**
+ * Task POJO class.
+ * @author User
+ *
+ */
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +18,8 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -23,7 +29,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level=AccessLevel.PRIVATE)
 @Data
 @NoArgsConstructor
-
+@Builder
+@AllArgsConstructor
 public class Task {
 	
 	@Id

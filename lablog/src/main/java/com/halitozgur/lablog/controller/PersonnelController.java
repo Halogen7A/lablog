@@ -13,7 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.halitozgur.lablog.model.Personnel;
 import com.halitozgur.lablog.repository.PersonnelRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * Controller for personnel registration.
+ * @author User
+ *
+ */
 @Controller
+@Slf4j
 public class PersonnelController {
 
 	@Autowired
@@ -22,6 +30,14 @@ public class PersonnelController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	/**
+	 * Checks if another personnel with the same username exists and then, if every validation is satisfied,
+	 * creates a newPersonnel (using the previous one as a dto) and sets the attributes.
+	 * @param personnel
+	 * @param result
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/register/addPersonnel")
 	public String addPersonnel(@Valid @ModelAttribute("personnel") Personnel personnel, BindingResult result, Model model) {
 		Personnel existingPersonnel = personnelRepo.findByPersonnelUserName(personnel.getPersonnelUserName());
@@ -29,8 +45,9 @@ public class PersonnelController {
 			result.rejectValue("username", "This username is taken!");
 		}
 		if(result.hasErrors()) {
+			log.info("Invalid Input!");
 			model.addAttribute("personnel", personnel);
-			return "redirect:/register";
+			return "/register";
 		}
 		Personnel newPersonnel = new Personnel();
 		newPersonnel.setPersonnelPassword(passwordEncoder.encode(personnel.getPersonnelPassword()));

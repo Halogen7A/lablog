@@ -45,7 +45,7 @@
 					<td th:text = "${experiment.endDate} ?: 'UNKNOWN'"></td>
 					<td th:text = "'$' + ${experiment.damageCost}"></td>
                     <td>
-						<ul th:each = "student: ${experiment.getStudents()} ?: 'EMPTY'">
+						<ul th:each = "student: ${experiment.getStudents()}">
                         	<li th:text = "${student.studentName}"></li>
 						</ul>
                     </td>
@@ -57,7 +57,6 @@
                     <td>
 						<div th:each = "supervisor: ${experiment.getSupervisor()}">
 							<span th:text = "${supervisor.supervisorName}"></span>
-							<p th:if = "${supervisor.supervisorName == null}">EMPTY</p>
 						</div>
                     </td>
 					<td>

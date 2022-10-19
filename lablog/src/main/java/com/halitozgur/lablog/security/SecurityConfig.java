@@ -15,6 +15,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 
+/**
+ * Spring security configuration file
+ * @author User
+ *
+ */
 @SuppressWarnings("deprecation")
 @EnableWebSecurity
 @Configuration
@@ -23,6 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+	/**
+	 * Define the AuthenticationProvider as a Bean in the spring container for the use of Spring Security 
+	 * and return a DAO provider.
+	 * @return
+	 */
 	@Bean
 	public AuthenticationProvider authProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -31,11 +41,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		return provider;
 	}
 	
+	/**
+	 * Defines the PasswordEncoder as a Bean in the spring container for the use of Spring Security
+	 * and encode the passwords.
+	 * @return
+	 */
 	@Bean
 	public static PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
+	/**
+	 * Permitting which authority has access to which pages.
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.csrf().disable()

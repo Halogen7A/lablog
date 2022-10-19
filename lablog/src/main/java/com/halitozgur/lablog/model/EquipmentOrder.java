@@ -1,8 +1,5 @@
 package com.halitozgur.lablog.model;
 
-import java.util.Objects;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,17 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Join table for the many to many relationship of Experiment and Equipment with the additional attribute of quantity used.
+ * @author User
+ *
+ */
 @Entity
 @Table(name = "equipment_order")
 @FieldDefaults(level=AccessLevel.PRIVATE)
@@ -34,14 +33,15 @@ public class EquipmentOrder {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long orderId;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name = "equipment_id")
 	Equipment equipment;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name = "experiment_id")
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	Experiment experiment;
 	
 	@Column(name = "quantity_used", columnDefinition = "int DEFAULT 1")

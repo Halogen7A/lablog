@@ -10,12 +10,20 @@ import com.halitozgur.lablog.model.Personnel;
 import com.halitozgur.lablog.model.PersonnelDetails;
 import com.halitozgur.lablog.repository.PersonnelRepository;
 
+/**
+ * Implementing the UserDetailsService so that when passed in the DAO Authentication Provider, it transfers personnel data.
+ * @author User
+ *
+ */
 @Service
 public class PersonnelDetailsService implements UserDetailsService{
 
 	@Autowired
 	private PersonnelRepository personnelRepo;
 	
+	/**
+	 * Loads user by its given user name
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Personnel personnel = personnelRepo.findByPersonnelUserName(username);

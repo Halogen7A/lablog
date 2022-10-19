@@ -52,7 +52,7 @@
 					<td th:text = "${equipment.unitPrice}"></td>
 					<td>
 						<a class="edit" th:href = "@{/equipment/edit/{id}(id=${equipment.equipmentId})}">Edit <i class="fa fa-edit"></i></a>
-						<a class="delete" th:href = "@{/equipment/delete/{id}(id=${equipment.equipmentId})}">Delete <i class="fa fa-remove"></i></a>
+						<a class="delete" th:if="${equipment.orders.isEmpty()}" th:href = "@{/equipment/delete/{id}(id=${equipment.equipmentId})}">Delete <i class="fa fa-remove"></i></a>
 					</td>
 				</tr>
 			</tbody>

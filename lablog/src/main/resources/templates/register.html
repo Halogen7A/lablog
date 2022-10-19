@@ -9,22 +9,24 @@
     <div class="form-container">
         <form th:action="@{/register/addPersonnel}" th:object = "${personnel}" method="post">
             <div class="form-element">
-                <label for="personnelUserName">Username (must be at least 8 characters):</label><br>
+                <label for="personnelUserName">Username:</label><br><br>
                 <input
                 type= "text"
                 name="personnelUserName"
                 th:field = "*{personnelUserName}"
                 placeholder="Enter Username"
                 >
+                 <p th:if="${#fields.hasErrors('personnelUserName')}" th:class = "${#fields.hasErrors('personnelUserName')}? error">Username must be at least 8 characters!</p>
             </div>
             <div class="form-element">
-                <label for="personnelPassword">Set Password (must be at least 8 characters):</label><br>
+                <label for="personnelPassword">Set Password:</label><br><br>
                 <input
                 type= "password"
                 name="personnelPassword"
                 th:field = "*{personnelPassword}"
-                placeholder="Enter Username"
+                placeholder="Enter Password"
                 >
+                <p th:if="${#fields.hasErrors('personnelPassword')}" th:class = "${#fields.hasErrors('personnelPassword')}? error">Password must be at least 8 characters!</p>
             </div>
             <div class="form-element">
                 <label for="role">Role</label>

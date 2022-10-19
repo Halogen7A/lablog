@@ -1,5 +1,10 @@
 package com.halitozgur.lablog.model;
 
+/**
+ * Supervisor POJO class.
+ * @author User
+ *
+ */
 
 import java.util.Set;
 
@@ -14,10 +19,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -26,7 +30,9 @@ import lombok.experimental.FieldDefaults;
 @Table(name="supervisor")
 @FieldDefaults(level=AccessLevel.PRIVATE)
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Supervisor {
 
 	@Id

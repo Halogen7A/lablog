@@ -7,6 +7,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * Takes in personnel attributes while implementing UserDetails so that personnel data can be returned at the
+ * PersonnelDetailsService.
+ * @author User
+ *
+ */
 public class PersonnelDetails implements UserDetails{
 	
 	

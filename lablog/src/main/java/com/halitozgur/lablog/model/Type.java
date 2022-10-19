@@ -1,5 +1,10 @@
 package com.halitozgur.lablog.model;
 
+/**
+ * Types of tasks.
+ * @author User
+ *
+ */
 public enum Type {
 	
 	DELIVERY("Delivery"), PLACEMENT("Placement"), CLEAN("Clean"), CHARGE("Charge");
