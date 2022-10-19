@@ -63,8 +63,8 @@ Add, update, delete, and "search by name" equipments. However, you cannot delete
 Add, update, delete, and search by "due date" tasks.
 
 
-##What I have learned
+## What I have learned
 About a year ago, I could barely write a python script. Now thanks to TEKSystems and Per Scholas, I am able to create web applications from scratch both on the front and back end. I was previously struggling to understand thymeleaf and spring security, but with the educational pressure that I was exposed to by this challenging project, I was able to utilize a myriad of resources to deepen my understanding of the concepts related to the project.
 
-##Additional Features
+## Additional Features
 The style could be much better. I could have the theme persist using JavaScript's localStorage. Moreover, while adding the equipments to the experiment, I can have the input field as a dropdown list instead of a text field. That way, the users would not need to check the inventory every time they need to add an equipment.
