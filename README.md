@@ -41,7 +41,7 @@ Username: Awesome Person
 
 Password: person1234
 
-## Poluationg the database
+## Populating the database
 
 You should be populating student, equipment, and task tables before you populate the experiment
 table.
